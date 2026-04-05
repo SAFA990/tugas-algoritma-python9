@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator Pemasaran Digital</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>📊 Kalkulator Pemasaran Digital</h1>
+
+    <form method="POST">
+        <input type="number" name="harga" placeholder="Masukkan harga produk" required>
+
+        <select name="marketplace">
+            <option value="tokopedia">Tokopedia</option>
+            <option value="shopee">Shopee</option>
+            <option value="lazada">Lazada</option>
+        </select>
+
+        <button type="submit">Hitung</button>
+    </form>
+
+    {% if hasil %}
+    <div class="hasil">
+        <p>Biaya Admin: Rp {{ biaya }}</p>
+        <p>Uang Diterima: Rp {{ hasil }}</p>
+    </div>
+    {% endif %}
+
+        <div class="logo">
+        <img src="{{ url_for('static', filename='img/tokopedia.png') }}">
+        <img src="{{ url_for('static', filename='img/shopee.png') }}">
+        <img src="{{ url_for('static', filename='img/lazada.png') }}">
+    </div>
+</div>
+
+</body>
+</html>
