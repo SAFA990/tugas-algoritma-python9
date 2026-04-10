@@ -1,40 +1,111 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Kalkulator Pemasaran Digital</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Engagement Rate Calculator</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 40px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(192, 105, 5, 0.85);
+        }
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+        button {
+            padding: 10px;
+            background: blue;
+            color: white;
+            border: none;
+            width: 100%;
+        }
+        .hasil {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>📊 Kalkulator Pemasaran Digital</h1>
+    <h2>Engagement Rate</h2>
 
     <form method="POST">
-        <input type="number" name="harga" placeholder="Masukkan harga produk" required>
-
-        <select name="marketplace">
-            <option value="tokopedia">Tokopedia</option>
-            <option value="shopee">Shopee</option>
-            <option value="lazada">Lazada</option>
-        </select>
+        <input type="number" name="like" placeholder="Jumlah Like" required>
+        <input type="number" name="comment" placeholder="Jumlah Comment" required>
+        <input type="number" name="share" placeholder="Jumlah Share" required>
+        <input type="number" name="followers" placeholder="Jumlah Followers" required>
 
         <button type="submit">Hitung</button>
     </form>
 
-    {% if hasil %}
-    <div class="hasil">
-        <p>Biaya Admin: Rp {{ biaya }}</p>
-        <p>Uang Diterima: Rp {{ hasil }}</p>
-    </div>
+    {% if error %}
+        <p class="error">{{ error }}</p>
     {% endif %}
 
-        <div class="logo">
-        <img src="{{ url_for('static', filename='img/tokopedia.png') }}">
-        <img src="{{ url_for('static', filename='img/shopee.png') }}">
-        <img src="{{ url_for('static', filename='img/lazada.png') }}">
-    </div>
+    {% if hasil is not none %}
+        <p class="hasil">Engagement Rate: {{ hasil|round(2) }}%</p>
+        <p>{{ keterangan }}</p>
+    {% endif %}
 </div>
 
 </body>
 </html>
+
+<style>
+    body {
+        font-family: Arial;
+        background-image: url("https://images.unsplash.com/photo-1519389950473-47ba0277781c");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        text-align: center;
+        padding: 40px;
+    }
+
+    .container {
+        background: rgba(215, 27, 165, 0.9); /* transparan dikit biar keliatan bg */
+        padding: 20px;
+        border-radius: 10px;
+        width: 350px;
+        margin: auto;
+        box-shadow: 0 0 10px rgba(225, 37, 163, 0.3);
+    }
+
+    input {
+        width: 90%;
+        padding: 8px;
+        margin: 8px 0;
+    }
+
+    button {
+        padding: 10px;
+        background: blue;
+        color: white;
+        border: none;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .hasil {
+        margin-top: 15px;
+        font-weight: bold;
+    }
+
+    .error {
+        color: red;
+    }
+</style>
